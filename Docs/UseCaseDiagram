@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor User as U
+actor Server as S
+rectangle "Battle State" {
+    (Initialize combat with Player) as (b1)
+    (Initialize combat with AI) as (b2)
+    (Choose an Action) as (b3)
+    U -- (b1)
+    (b1) -- S
+    U -- (b2)
+    (b2) -- S
+    U -- (b3)
+    (b3) -- S
+}
+rectangle "Event State" {
+    (Initialize Event) as d1
+    (Pick option) as (d2)
+    U -- (d1)
+    (d1) -- S
+    U -- (d2)
+    (d2) -- S
+}
+(Read QR-Code) as (QR)
+U -- (QR)
+(QR) -- S
+rectangle "Menu State" {
+    (Manage Inventory/Units) as (m1)
+    (Buy Items/Units) as (m2)
+    (Start Battle) as (m3)
+    (Manage Settings) as (m4)
+    U -- (m1)
+    (m1) -- S
+    U -- (m2)
+    (m2) -- S
+    U -- (m3)
+    (m3) -- S
+    U -- (m4)
+    (m4) -- S
+}
+@enduml
